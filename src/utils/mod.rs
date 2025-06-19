@@ -23,17 +23,17 @@ pub mod download {
         });
 
         caps.set_base_capability("goog:chromeOptions", chrome_options)?;
-        caps.set_base_capability(
-            "goog:chromeOptions",
-            json!({
-                "args": [
-                    "--headless=new",
-                    "--no-sandbox",
-                    "--disable-gpu",
-                    "--window-size=1280,800"
-                ]
-            }),
-        )?;
+        // caps.set_base_capability(
+        //     "goog:chromeOptions",
+        //     json!({
+        //         "args": [
+        //             // "--headless=new",
+        //             // "--no-sandbox",
+        //             // "--disable-gpu",
+        //             // "--window-size=1280,800"
+        //         ]
+        //     }),
+        // )?;
 
         let driver = WebDriver::new("http://localhost:9515", caps).await?;
 
