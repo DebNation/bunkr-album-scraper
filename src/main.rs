@@ -12,6 +12,10 @@ async fn main() {
     if let Ok(Some(line)) = reader.next_line().await {
         url = line.trim().to_string();
     }
+    let url_regex = Regex::new(r#"https?://(?:www\.)?bunkr\.[^/]+/a/.*"#).unwrap();
+    let Some(_) = url_regex.captures(&url) else {
+        panic!("Not a bunkr album url");
+    };
 
     let re = Regex::new(r#"href="(?P<href>/f/[^"]+)""#).unwrap();
 
@@ -44,7 +48,7 @@ async fn get_response_body(url: &str) -> String {
         .header("Content-Length", "0")
         .send()
         .await
-        .unwrap();
+        .expect("Please enter a bunkr album url");
 
     let body = res.text().await.unwrap();
 
