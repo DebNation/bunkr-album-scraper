@@ -1,5 +1,0 @@
-Starting ChromeDriver 138.0.7204.49 (d2b48fd5f7813ed477a2d68fa232b8178fa4fb1e-refs/branch-heads/7204@{#1814}) on port 9515
-Only local connections are allowed.
-Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
-[1751303043.204][SEVERE]: bind() failed: Address already in use (98)
-IPv6 port not available. Exiting...

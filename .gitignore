@@ -1,1 +1,4 @@
 /target
+./chromedriver.log
+./Downloads
+./src/utils/adblock-extension/*
