@@ -5,7 +5,7 @@ It still needs the browser window.
 Please don't abuse the service.
 ```
 
-### Prerequisite
+### Prerequisite*
 - You must have chromium or chrome browser installed;
 ### Start the program
 ```
