@@ -1,6 +1,31 @@
 #!/usr/bin/env bash
 
+
 set -euo pipefail
+
+# URL to download from
+URL="https://github.com/uBlockOrigin/uBOL-home/releases/download/uBOLite_2025.624.1503/uBOLite_2025.624.1503.chromium.mv3.zip"
+
+# Output paths
+ZIP_NAME="uBOLite.zip"
+DEST_DIR="./src/utils/adblock-extension"
+
+# Create destination directory if it doesn't exist
+mkdir -p "$DEST_DIR"
+
+# Download the ZIP file
+echo "Downloading uBlock Origin Lite..."
+curl -L "$URL" -o "$ZIP_NAME"
+
+# Unzip to the target directory
+echo "Unzipping to $DEST_DIR..."
+unzip -o "$ZIP_NAME" -d "$DEST_DIR"
+
+# Clean up
+rm "$ZIP_NAME"
+echo "Done."
+
+
 
 # --- Step 1: Start ChromeDriver ---
 echo "🚀 Starting ChromeDriver on port 9515..."
