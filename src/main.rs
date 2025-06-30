@@ -35,8 +35,10 @@ async fn main() {
         direct_urls_vec.push(direct_url);
     }
     // println!("{:?}", direct_urls_vec);
-    for url in &direct_urls_vec {
-        let _ = utils::download::download_link(url).await.unwrap();
+    for direct_url in &direct_urls_vec {
+        let _ = utils::download::download_link(direct_url, &url)
+            .await
+            .unwrap();
         println!("Downloaded {}", url);
     }
 }
