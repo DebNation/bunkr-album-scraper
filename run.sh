@@ -3,6 +3,7 @@
 
 set -euo pipefail
 
+
 # URL to download from
 URL="https://github.com/uBlockOrigin/uBOL-home/releases/download/uBOLite_2025.624.1503/uBOLite_2025.624.1503.chromium.mv3.zip"
 
@@ -13,17 +14,22 @@ DEST_DIR="./src/utils/adblock-extension"
 # Create destination directory if it doesn't exist
 mkdir -p "$DEST_DIR"
 
-# Download the ZIP file
-echo "Downloading uBlock Origin Lite..."
-curl -L "$URL" -o "$ZIP_NAME"
+# Check if directory is empty
+if [ -z "$(ls -A "$DEST_DIR")" ]; then
+    echo "Directory is empty. Downloading uBlock Origin Lite..."
+    curl -L "$URL" -o "$ZIP_NAME"
 
-# Unzip to the target directory
-echo "Unzipping to $DEST_DIR..."
-unzip -o "$ZIP_NAME" -d "$DEST_DIR"
+    echo "Unzipping to $DEST_DIR..."
+    unzip -o "$ZIP_NAME" -d "$DEST_DIR"
 
-# Clean up
-rm "$ZIP_NAME"
-echo "Done."
+    rm "$ZIP_NAME"
+    echo "Done."
+else
+    echo "Directory $DEST_DIR is not empty. Skipping download and extraction."
+fi
+
+# Continue with the rest of your script here
+echo "Continuing with next steps..."
 
 
 
