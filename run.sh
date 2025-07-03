@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-
 set -euo pipefail
-
 
 # URL to download from
 URL="https://github.com/uBlockOrigin/uBOL-home/releases/download/uBOLite_2025.624.1503/uBOLite_2025.624.1503.chromium.mv3.zip"
@@ -11,12 +9,11 @@ URL="https://github.com/uBlockOrigin/uBOL-home/releases/download/uBOLite_2025.62
 ZIP_NAME="uBOLite.zip"
 DEST_DIR="./src/utils/adblock-extension"
 
-# Create destination directory if it doesn't exist
-mkdir -p "$DEST_DIR"
+# If the directory already exists, skip download and extraction
+if [ ! -d "$DEST_DIR" ]; then
+    echo "Directory does not exist. Creating and downloading uBlock Origin Lite..."
+    mkdir -p "$DEST_DIR"
 
-# Check if directory is empty
-if [ -z "$(ls -A "$DEST_DIR")" ]; then
-    echo "Directory is empty. Downloading uBlock Origin Lite..."
     curl -L "$URL" -o "$ZIP_NAME"
 
     echo "Unzipping to $DEST_DIR..."
@@ -24,13 +21,7 @@ if [ -z "$(ls -A "$DEST_DIR")" ]; then
 
     rm "$ZIP_NAME"
     echo "Done."
-else
-    echo "Directory $DEST_DIR is not empty. Skipping download and extraction."
 fi
-
-# Continue with the rest of your script here
-echo "Continuing with next steps..."
-
 
 
 # --- Step 1: Start ChromeDriver ---
